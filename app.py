@@ -1,10 +1,3 @@
-# Q&A Chatbot
-#from langchain.llms import OpenAI
-
-from dotenv import load_dotenv
-
-load_dotenv()  # take environment variables from .env.
-
 import streamlit as st
 import os
 import pathlib
@@ -21,7 +14,7 @@ def to_markdown(text):
   return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
 
 os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=os.getenv("API_KEY"))
+genai.configure(api_key=os.getenv("AIzaSyAGtUgf8sZrLIlhq1eG3vQmEEDTd9dTZ8c"))
 
 ## Function to load OpenAI model and get respones
 
