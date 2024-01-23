@@ -2,6 +2,9 @@ import streamlit as st
 import os
 import pathlib
 import textwrap
+from dotenv import load_dotenv
+
+load_dotenv()
 
 import google.generativeai as genai
 
@@ -13,8 +16,7 @@ def to_markdown(text):
   text = text.replace('•', '  *')
   return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
 
-os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=os.getenv("AIzaSyAGtUgf8sZrLIlhq1eG3vQmEEDTd9dTZ8c"))
+genai.configure(api_key=os.getenv("API_KEY"))
 
 ## Function to load OpenAI model and get respones
 
