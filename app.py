@@ -8,10 +8,10 @@ load_dotenv()
 # Configure API key
 genai.configure(api_key=st.secrets["API_KEY"])
 
-# Function to generate text response
+# Function to generate text/chat response
 def get_gemini_text_response(question):
     try:
-        response = genai.chat(
+        response = genai.generate_message(
             model="models/chat-bison-001",  # Verified for chat/text generation
             messages=[{"content": question}]
         )
@@ -23,8 +23,8 @@ def get_gemini_text_response(question):
 def get_gemini_image_response(prompt):
     try:
         response = genai.generate_image(
-            prompt=prompt,
-            model="models/imagen-3"  # Verified for image generation
+            model="models/imagen-3",  # Verified for image generation
+            prompt=prompt
         )
         return response.get("image_url", "No image URL returned.")
     except Exception as e:
