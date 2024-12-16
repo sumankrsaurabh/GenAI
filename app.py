@@ -5,26 +5,26 @@ import google.generativeai as genai
 # Load environment variables
 load_dotenv()
 
-# Configure API key for Google Generative AI
+# Configure API key
 genai.configure(api_key=st.secrets["API_KEY"])
 
-# Function to get text response from Gemini
+# Function to generate text response
 def get_gemini_text_response(question):
     try:
-        response = genai.generate_text(
-            model="models/gemini-1.5-pro",  # Verified Gemini text model
-            prompt=question
+        response = genai.chat(
+            model="models/chat-bison-001",  # Verified for chat/text generation
+            messages=[{"content": question}]
         )
-        return response.get("candidates", [{}])[0].get("output", "No response generated.")
+        return response.get("candidates", [{}])[0].get("content", "No response generated.")
     except Exception as e:
         return f"Error: {e}"
 
-# Function to get image response from Imagen
+# Function to generate an image
 def get_gemini_image_response(prompt):
     try:
         response = genai.generate_image(
-            model="models/imagen-3",  # Verified Imagen model for image generation
-            prompt=prompt
+            prompt=prompt,
+            model="models/imagen-3"  # Verified for image generation
         )
         return response.get("image_url", "No image URL returned.")
     except Exception as e:
